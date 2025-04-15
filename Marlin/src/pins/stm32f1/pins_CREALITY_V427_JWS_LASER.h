@@ -10,8 +10,8 @@ cleaner.
 // -jws 20220130 - Turn off the stock PWM fan on PA0.   It's the one marked
 // K-FAN1 and K-FAN2 on the mainboard.  They're actually just to places to
 // plug into on the same pin. 
-#undef FAN_PIN                        
-#define FAN_PIN          PC9
+#undef FAN0_PIN                        
+#define FAN0_PIN          PC9
 
 // -jws 20220130 Remapping unused but required devices to unused pins.  
 // Marlin requires 4 steppers to be defined, even if we are only using 2.

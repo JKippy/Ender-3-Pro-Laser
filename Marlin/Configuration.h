@@ -61,7 +61,7 @@
 
 // Author info of this build printed to the host during boot and M115
 // -jws 20231120
-#define STRING_CONFIG_H_AUTHOR "(JWSmythe, MarlinLaser)" // Who made the changes.
+#define STRING_CONFIG_H_AUTHOR "(JKippy, JWSmythe, MarlinLaser)" // Who made the changes.
 //#define CUSTOM_VERSION_FILE Version.h // Path from the root directory (no quotes)
 
 /**
@@ -140,7 +140,7 @@
 // Name displayed in the LCD "Ready" message and Info menu
 // -jws 20231120
 //#define CUSTOM_MACHINE_NAME "3D Printer"
-#define CUSTOM_MACHINE_NAME "Laser 20231121.1723"
+#define CUSTOM_MACHINE_NAME "Ender 3 Pro Laser"
 // Printer's unique ID, used by some programs to differentiate between machines.
 // Choose your own or use a service like https://www.uuidgenerator.net/version4
 //#define MACHINE_UUID "00000000-0000-0000-0000-000000000000"
@@ -166,7 +166,8 @@
 #define X_DRIVER_TYPE  TMC2208_STANDALONE
 #define Y_DRIVER_TYPE  TMC2208_STANDALONE
 // -jws 20231121 - no Z axis.
-//#define Z_DRIVER_TYPE  TMC2208_STANDALONE 
+// -jk 20240415 - yes Z axis
+#define Z_DRIVER_TYPE  TMC2208_STANDALONE 
 //#define X2_DRIVER_TYPE A4988
 //#define Y2_DRIVER_TYPE A4988
 //#define Z2_DRIVER_TYPE A4988
@@ -1045,7 +1046,8 @@
 #define USE_XMIN_PLUG
 #define USE_YMIN_PLUG
 // -jws 20231121 - no Z, no Z limit switch
-//#define USE_ZMIN_PLUG
+// -jk 20240414 - yes z, yes z limit switch
+#define USE_ZMIN_PLUG
 //#define USE_IMIN_PLUG
 //#define USE_JMIN_PLUG
 //#define USE_KMIN_PLUG
@@ -1114,11 +1116,13 @@
 
 // Mechanical endstop with COM to ground and NC to Signal uses "false" here (most common setup).
 // -jws 20231121 - Generic endstops on GS (no V) are reversed.
-#define X_MIN_ENDSTOP_INVERTING true // Set to true to invert the logic of the endstop.
-#define Y_MIN_ENDSTOP_INVERTING true // Set to true to invert the logic of the endstop.
+// -jk 20240414 - no
+#define X_MIN_ENDSTOP_INVERTING false // Set to true to invert the logic of the endstop.
+#define Y_MIN_ENDSTOP_INVERTING false // Set to true to invert the logic of the endstop.
 // -jws 20220130 This should make the machine think the Z endstop is reached all the time.  This machine has no Z. 
 // source: https://forum.v1engineering.com/t/marlin-2-0-how-to-disable-z-homing-when-auto-home-initiated/30174
-#define Z_MIN_ENDSTOP_INVERTING true
+// -jk 20240414 I don't want that
+#define Z_MIN_ENDSTOP_INVERTING false
 //#define Z_MIN_ENDSTOP_INVERTING false // Set to true to invert the logic of the endstop.
 #define I_MIN_ENDSTOP_INVERTING false // Set to true to invert the logic of the endstop.
 #define J_MIN_ENDSTOP_INVERTING false // Set to true to invert the logic of the endstop.
@@ -1183,9 +1187,10 @@
  * Override with M92
  *                                      X, Y, Z [, I [, J [, K...]]], E0 [, E1[, E2...]]
  */
- // -jws 20231120 - With E and Z disabled (0), we need 2 elements here. 
+ // -jws 20231120 - With E and Z disabled (0), we need 2 elements here.
+ // -jk 20240414 - yes z, yes z limit switch
 //#define DEFAULT_AXIS_STEPS_PER_UNIT   { 80, 80, 400, 500 }
-#define DEFAULT_AXIS_STEPS_PER_UNIT   { 80, 80 }
+#define DEFAULT_AXIS_STEPS_PER_UNIT   { 80, 80, 400 }
 
 /**
  * Default Max Feed Rate (linear=mm/s, rotational=°/s)
@@ -1193,14 +1198,16 @@
  *                                      X, Y, Z [, I [, J [, K...]]], E0 [, E1[, E2...]]
  */
 // -jws 20231120 - With E and Z disabled (0), we need 2 elements here. 
+// -jk 20240414 - yes z, yes z limit switch
 //#define DEFAULT_MAX_FEEDRATE          { 300, 300, 5, 25 }
-#define DEFAULT_MAX_FEEDRATE          { 300, 300 }
+#define DEFAULT_MAX_FEEDRATE          { 300, 300, 5 }
 
 //#define LIMITED_MAX_FR_EDITING        // Limit edit via M203 or LCD to DEFAULT_MAX_FEEDRATE * 2
 #if ENABLED(LIMITED_MAX_FR_EDITING)
   // -jws 20231120 - With E and Z disabled (0), we need 2 elements here. 
+  // -jk 20240414 - yes z, yes z limit switch
   // #define MAX_FEEDRATE_EDIT_VALUES    { 600, 600, 10, 50 } // ...or, set your own edit limits
-  #define MAX_FEEDRATE_EDIT_VALUES    { 600, 600 } // ...or, set your own edit limits
+  #define MAX_FEEDRATE_EDIT_VALUES    { 600, 600, 10 } // ...or, set your own edit limits
 #endif
 
 /**
@@ -1209,15 +1216,17 @@
  * Override with M201
  *                                      X, Y, Z [, I [, J [, K...]]], E0 [, E1[, E2...]]
  */
- // -jws 20231120 - With E and Z disabled (0), we need 2 elements here. 
+ // -jws 20231120 - With E and Z disabled (0), we need 2 elements here.
+ // -jk 20240414 - yes z, yes z limit switch 
 //#define DEFAULT_MAX_ACCELERATION      { 3000, 3000, 100, 10000 }
-#define DEFAULT_MAX_ACCELERATION      { 3000, 3000 }
+#define DEFAULT_MAX_ACCELERATION      { 3000, 3000, 100 }
 
 //#define LIMITED_MAX_ACCEL_EDITING     // Limit edit via M201 or LCD to DEFAULT_MAX_ACCELERATION * 2
 #if ENABLED(LIMITED_MAX_ACCEL_EDITING)
   // -jws 20231120 - With E and Z disabled (0), we need 2 elements here. 
+  // -jk 20240414 - yes z, yes z limit switch
   //#define MAX_ACCEL_EDIT_VALUES       { 6000, 6000, 200, 20000 } // ...or, set your own edit limits
-  #define MAX_ACCEL_EDIT_VALUES       { 6000, 6000 } // ...or, set your own edit limits
+  #define MAX_ACCEL_EDIT_VALUES       { 6000, 6000, 200 } // ...or, set your own edit limits
 #endif
 
 /**
@@ -1300,7 +1309,8 @@
  * (Automatically enables USE_PROBE_FOR_Z_HOMING.)
  */
 // -jws 20220130 Disabling because laser doesn't have Z axis. 
-//#define Z_MIN_PROBE_USES_Z_MIN_ENDSTOP_PIN
+// -jk 20240414 - yes z, yes z limit switch
+#define Z_MIN_PROBE_USES_Z_MIN_ENDSTOP_PIN
 
 // Force the use of the probe for Z-axis homing
 //#define USE_PROBE_FOR_Z_HOMING
@@ -1646,10 +1656,12 @@
 // Disable axis steppers immediately when they're not being stepped.
 // WARNING: When motors turn off there is a chance of losing position accuracy!
 // -jws 20231121 - This is a laser, let it release them for manual moves.
-#define DISABLE_X true
-#define DISABLE_Y true
+// -jk 20240415 No?
+#define DISABLE_X false
+#define DISABLE_Y false
 // -jws 20231121 - no Z, no Z limit switch
-//#define DISABLE_Z false
+// -jk 20240415 yes z, yes z limit switch
+#define DISABLE_Z false
 //#define DISABLE_I false
 //#define DISABLE_J false
 //#define DISABLE_K false
@@ -1669,10 +1681,12 @@
 
 // Invert the stepper direction. Change (or reverse the motor connector) if an axis goes the wrong way.
 // -jws 20220131 As wired, they got X backwards.  Too lazy to flip the wires. 
-#define INVERT_X_DIR true
+// -jk 20240415 Changed INVERT_X_DIR back to false.
+#define INVERT_X_DIR false
 #define INVERT_Y_DIR false
 // -jws 20231121 - no Z, no Z limit switch
-//#define INVERT_Z_DIR true
+// -jk 20240414 - yes z, yes z limit switch
+#define INVERT_Z_DIR false
 //#define INVERT_I_DIR false
 //#define INVERT_J_DIR false
 //#define INVERT_K_DIR false
@@ -1714,7 +1728,8 @@
 #define X_HOME_DIR -1
 #define Y_HOME_DIR -1
 // -jws 20231121 - no Z, no Z limit switch
-//#define Z_HOME_DIR -1
+// -jk 20240414 - yes z, yes z limit switch
+#define Z_HOME_DIR -1
 //#define I_HOME_DIR -1
 //#define J_HOME_DIR -1
 //#define K_HOME_DIR -1
@@ -1726,8 +1741,9 @@
 
 // The size of the printable area
 // -jws 20220131 Changed to match the laser bed.
-#define X_BED_SIZE 380
-#define Y_BED_SIZE 320
+// -jk 202401414 changed to match Ender 3 Pro
+#define X_BED_SIZE 220
+#define Y_BED_SIZE 220
 
 // Travel limits (linear=mm, rotational=°) after homing, corresponding to endstop positions.
 #define X_MIN_POS 0
@@ -2131,8 +2147,9 @@
 
 // Homing speeds (linear=mm/min, rotational=°/min)
 // -jws 20231121 - With E and Z disabled (0), we need 2 elements here. 
+// -jk 20240414 - yes z
 //#define HOMING_FEEDRATE_MM_M { (50*60), (50*60), (4*60) }
-#define HOMING_FEEDRATE_MM_M { (50*60), (50*60) }
+#define HOMING_FEEDRATE_MM_M { (50*60), (50*60), (4*60) }
 
 // Validate that endstops are triggered on homing moves
 #define VALIDATE_HOMING_ENDSTOPS
@@ -2285,7 +2302,8 @@
  */
 // -jws 20220128 Enabling, for ADVANCED_PAUSE_FEATURE.  This may be removed later. 
 // -jws 20231121 - Disable, no Z axis.
-//#define NOZZLE_PARK_FEATURE
+// -jk 20240414 - yes z
+#define NOZZLE_PARK_FEATURE
 
 #if ENABLED(NOZZLE_PARK_FEATURE)
   // Specify a park position as { X, Y, Z_raise }
