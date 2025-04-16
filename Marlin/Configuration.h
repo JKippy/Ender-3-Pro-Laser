@@ -1189,7 +1189,7 @@
  */
  // -jws 20231120 - With E and Z disabled (0), we need 2 elements here.
  // -jk 20240414 - yes z, yes z limit switch
-//#define DEFAULT_AXIS_STEPS_PER_UNIT   { 80, 80, 400, 500 }
+//#define DEFAULT_AXIS_STEPS_PER_UNIT   { 80, 80, 400 }
 #define DEFAULT_AXIS_STEPS_PER_UNIT   { 80, 80, 400 }
 
 /**
@@ -1199,7 +1199,7 @@
  */
 // -jws 20231120 - With E and Z disabled (0), we need 2 elements here. 
 // -jk 20240414 - yes z, yes z limit switch
-//#define DEFAULT_MAX_FEEDRATE          { 300, 300, 5, 25 }
+//#define DEFAULT_MAX_FEEDRATE          { 300, 300, 5 }
 #define DEFAULT_MAX_FEEDRATE          { 300, 300, 5 }
 
 //#define LIMITED_MAX_FR_EDITING        // Limit edit via M203 or LCD to DEFAULT_MAX_FEEDRATE * 2
@@ -1218,7 +1218,7 @@
  */
  // -jws 20231120 - With E and Z disabled (0), we need 2 elements here.
  // -jk 20240414 - yes z, yes z limit switch 
-//#define DEFAULT_MAX_ACCELERATION      { 3000, 3000, 100, 10000 }
+//#define DEFAULT_MAX_ACCELERATION      { 3000, 3000, 100 }
 #define DEFAULT_MAX_ACCELERATION      { 3000, 3000, 100 }
 
 //#define LIMITED_MAX_ACCEL_EDITING     // Limit edit via M201 or LCD to DEFAULT_MAX_ACCELERATION * 2
@@ -1309,8 +1309,7 @@
  * (Automatically enables USE_PROBE_FOR_Z_HOMING.)
  */
 // -jws 20220130 Disabling because laser doesn't have Z axis. 
-// -jk 20240414 - yes z, yes z limit switch
-#define Z_MIN_PROBE_USES_Z_MIN_ENDSTOP_PIN
+//#define Z_MIN_PROBE_USES_Z_MIN_ENDSTOP_PIN
 
 // Force the use of the probe for Z-axis homing
 //#define USE_PROBE_FOR_Z_HOMING
@@ -1520,6 +1519,9 @@
  *     O-- FRONT --+
  */
 #define NOZZLE_TO_PROBE_OFFSET { 10, 10, 0 }
+
+// -jk 20240414 Added this because when homed, the laser was not above the build plate
+#define Y_HOME_OFFSET 25
 
 // Most probes should stay away from the edges of the bed, but
 // with NOZZLE_AS_PROBE this can be negative for a wider probing area.
@@ -1742,8 +1744,9 @@
 // The size of the printable area
 // -jws 20220131 Changed to match the laser bed.
 // -jk 202401414 changed to match Ender 3 Pro
-#define X_BED_SIZE 220
-#define Y_BED_SIZE 220
+#define X_BED_SIZE 230
+#define Y_BED_SIZE 245
+#define Z_BED_SIZE 250
 
 // Travel limits (linear=mm, rotational=°) after homing, corresponding to endstop positions.
 #define X_MIN_POS 0

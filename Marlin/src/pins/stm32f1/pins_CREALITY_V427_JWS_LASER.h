@@ -31,9 +31,11 @@ cleaner.
 #define E0_DIR_PIN                     PC8 // was PB3
 // Z stepper
 #undef Z_STEP_PIN
-#define Z_STEP_PIN                     PC8 // was PB6
+#define Z_STEP_PIN                     PB6 // Confirm this matches your board's wiring
 #undef Z_DIR_PIN 
-#define Z_DIR_PIN                      PC8 // was PB5
+#define Z_DIR_PIN                      PB5 // Confirm this matches your board's wiring
+#undef Z_ENABLE_PIN
+#define Z_ENABLE_PIN                   PA8 // Ensure this matches your board's enable pin
 
 // Extruder
 #undef HEATER_0_PIN
