@@ -35,18 +35,6 @@ For this documentation, I'm using the Marlin 2.1.2.4 firmware. I tried 2.1.2.5 f
 
 This repo contains all the Marlin 2.1.2.4 files needed. You should be able to just open this repo in VSCode and using the Marlin Auto Build extension, build yourself a .bin file which you can then use to flash your machine.
 
-```
-// -jws 20220128 - This is to override any pin definitions earlier, without messing with a bunch of other files.
-// It'll be a lot easier to port that to future Marlin versions.
-#include "pins_CREALITY_V427_JWS_LASER.h"
-```
-
-Build, flash, you're done.
-
-I built the Config*.h files from the Marlin example file, not the Creality configuration. I included diff files, if you prefer to look for changes that way.  
-
-I made the Bootscreen and Statusscreen graphics, just because I wanted it to look nice. 
-
 # Cutting Software
 
 I'm using Lightburn on my laptop for the time being.  When you set up the machine, just use the Marlin controller type.  In the device settings, you can choose M03/M05 or Inline. 
