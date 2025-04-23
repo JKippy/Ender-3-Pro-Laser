@@ -15,7 +15,7 @@ There are 4 parts to this project.
 + Questions, Comments, and Bug Reports
 
 # Hardware
-I am using a Laser Tree 40w(5w Optical) laser module fitted onto an Ender 3 Pro.
+I am using a Laser Tree 40w(5w Optical) laser module fitted onto an Ender 3 Pro. [Laser module bracket I made](https://www.thingiverse.com/thing:7018631)
 
 I'm using 3 physical switch type endstops on X, Y, and Z, so the machine can home to 0,0 each time it runs. They aren't necessary, but they're nice to have.
 
