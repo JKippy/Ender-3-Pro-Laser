@@ -33,17 +33,7 @@ Make sure your laser machine's stepper power supply is within specs for your sel
 
 For this documentation, I'm using the Marlin 2.1.2.4 firmware. I tried 2.1.2.5 first and it didn't work so I just began stepping down until one did. 
 
-The configuration is pretty simple.  It just drops 3 (or 5) things into your Marlin directory, make 1 change, and build it.
-Copy the files from this repo into the following locations:
-
-+ ./Marlin/Configuration.h 
-+ ./Marlin/Configuration_adv.h 
-+ ./Marlin/_Bootscreen.h
-+ ./Marlin/_Statusscreen.h
-+ ./Marlin/src/pins/stm32f1/pins_CREALITY_V427_JWS_LASER.h
-
-Edit the file ./Marlin/src/pins/stm32f1/pins_CREALITY_V4.h
-Add the following 3 lines to the bottom of pins_CREALITY_V4.h 
+This repo contains all the Marlin 2.1.2.4 files needed. You should be able to just open this repo in VSCode and using the Marlin Auto Build extension, build yourself a .bin file which you can then use to flash your machine.
 
 ```
 // -jws 20220128 - This is to override any pin definitions earlier, without messing with a bunch of other files.
