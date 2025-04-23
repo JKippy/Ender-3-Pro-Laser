@@ -1182,7 +1182,9 @@ void setup() {
       while (!MYSERIAL3.connected() && PENDING(millis(), serial_connect_timeout)) { /*nada*/ }
     #endif
   #endif
+  // -jk 20250422 Changing this so hopefully lightburn recognizes the cutter as Marlin not GRBL
   SERIAL_ECHOLNPGM("start");
+  SERIAL_ECHOLNPGM("Marlin 2.1.x Laser Cutter - Hello Lightburn!");
 
   // Set up these pins early to prevent suicide
   #if HAS_KILL

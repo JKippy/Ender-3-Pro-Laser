@@ -1688,7 +1688,7 @@
 #define INVERT_Y_DIR false
 // -jws 20231121 - no Z, no Z limit switch
 // -jk 20240414 - yes z, yes z limit switch
-#define INVERT_Z_DIR false
+#define INVERT_Z_DIR true
 //#define INVERT_I_DIR false
 //#define INVERT_J_DIR false
 //#define INVERT_K_DIR false
